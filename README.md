@@ -1,6 +1,6 @@
 # LanguageTranslator
 
-https://universal-language-translator.pages.dev/
+<a href="https://universal-language-translator.pages.dev/">Universal Language Translator</a>
 
 Will attempt to make an encrypted HIPAA compliant Universal Language Translator.
 Will use an AI assistant to automatically detect any language being spoken, and translate it to the user's preferred language.
