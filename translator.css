@@ -4,11 +4,12 @@
 
 body { 
     background-color: black;
+    color: white;
     cursor: pointer;
     display: flex;
         align-items: center;
         justify-content: center;
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     min-height: 100vh;
     min-width:100vw;
     overflow:hidden;
