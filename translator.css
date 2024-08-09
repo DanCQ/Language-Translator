@@ -11,8 +11,17 @@ body {
         justify-content: center;
     font-family: sans-serif;
     min-height: 100vh;
-    min-width:100vw;
-    overflow:hidden;
+    min-width: 100vw;
+    overflow: hidden;
+}
+
+h1 {
+    color: whitesmoke;
+    font-family: "jura";
+    position:absolute;
+        top: 0;
+    max-width: 100vw;
+    opacity: 0;
 }
 
 img {
