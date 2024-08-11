@@ -95,11 +95,8 @@ function listening() {
 }
 
 
-window.addEventListener("click", function() {
-
-    listening();
-
-});
+window.addEventListener("click",  listening);
+window.addEventListener("touchstart", listening);
 
 
 window.onload = function() {
