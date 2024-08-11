@@ -28,7 +28,7 @@ h1 {
     font-size: clamp(32px, 3.5vw, 36px);
     padding:1.5px 8px 3px 8px;
     position: absolute;
-        top:1.9%;
+        top:2%;
     opacity: 0;
     text-align: center;
     text-shadow: 0px 0px 1.5px cyan;
@@ -61,7 +61,7 @@ nav {
     color:snow;
     cursor: pointer;
     display: none;
-    font-size: clamp(28px, 3vw, 32px);
+    font-size: clamp(30px, 3vw, 34px);
     margin: 8px; 
     position:absolute;
         right: 2%;
