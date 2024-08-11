@@ -12,7 +12,7 @@ function fadeInAndOut() {
 
         fade = setInterval(fadeIn, 175); //fades in title
 
-    }, 1750); //waits this much
+    }, 1750); //waits 1.75 seconds
 
 
     function fadeIn() {
@@ -27,7 +27,7 @@ function fadeInAndOut() {
 
                 fade = setInterval(fadeOut, 175); //fades out title
 
-            }, 8500); //waits this much
+            }, 7500); //waits this much
         }   
     }
 
