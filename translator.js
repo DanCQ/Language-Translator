@@ -1,10 +1,15 @@
 const title = document.querySelector('h1');
+const microphone = document.querySelector('.oval');
 
-let fade; //used for intervals
+let allow = true; //used for interval
+let countdown; //used for interval
+let fade; //used for interval
+let power = false; //toggle on/off
+let timer; //used for interval
 
 
 
-function fadeInAndOut() {
+function titleFade() {
 
     let opacity = 0.0;
 
@@ -17,7 +22,7 @@ function fadeInAndOut() {
 
     function fadeIn() {
 
-        title.style.opacity = Math.round(opacity += 0.1 * 100) / 100; //prevents decimal numbers bug
+        title.style.opacity = Math.round(opacity += 0.1 * 100) / 100; //prevents decimal number bug
 
         if(title.style.opacity >= 1) {
 
@@ -33,7 +38,7 @@ function fadeInAndOut() {
 
     function fadeOut() {
 
-        title.style.opacity = Math.round(opacity -= 0.1 * 100) / 100; //prevents decimal numbers bug
+        title.style.opacity = Math.round(opacity -= 0.1 * 100) / 100; //prevents decimal number bug
 
         if(title.style.opacity <= 0) {
 
@@ -45,8 +50,54 @@ function fadeInAndOut() {
 }
 
 
+function listening() { 
+
+    //toggles on/off
+    if(!power) {
+        power = true;
+        on(); 
+    } else {
+        power = false;
+        off();
+    }  
+
+    function on() {
+        clearInterval(countdown);
+        allow = true;
+        microphone.style.backgroundColor = "aquamarine"; //on color
+    }
+
+    function off() { 
+        timer = 5000; //resets timer
+        microphone.style.backgroundColor = "tomato"; //off color
+
+        if(allow) {
+
+            allow = false; //prevents multiple intervals
+    
+            countdown = setInterval(() => {
+                timer -= 1000; 
+            
+                if(timer <= 0 && !power) {
+                    clearInterval(countdown);
+                    allow = true;
+                    microphone.style.backgroundColor = "antiquewhite"; //idle color
+                }
+            }, 1000);
+        }   
+    }
+}
+
+
+window.addEventListener("click", function() {
+
+    listening();
+
+});
+
+
 window.onload = function() {
 
-    fadeInAndOut();
+    titleFade();
 
 };
