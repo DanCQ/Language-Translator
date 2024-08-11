@@ -1,3 +1,9 @@
+* { 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 *::-webkit-scrollbar {
     display: none;
 }
@@ -10,8 +16,9 @@ body {
         justify-content: center;
     font-family: sans-serif;
     min-height: 100vh;
-    min-width: 100vw;
+    position:absolute;
     overflow: hidden;
+    width: 100%;
 }
 
 h1 {
@@ -19,10 +26,10 @@ h1 {
     border-radius: 5px;
     color: aliceblue;
     font-family: "jura";
-    font-size: 32px;
+    font-size: clamp(22px, 5vw, 32px);
     padding:1.5px 8px 3px 8px;
     position: absolute;
-        top:2%;
+        top:1.9%;
     opacity: 0;
     text-align: center;
     text-shadow: 0px 0px 2px cyan;
@@ -46,47 +53,4 @@ img {
         justify-content: center;
     padding: 6px;
     position: absolute;
-}
-
-
-@media (max-width: 800px) {
-
-    h1 {
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 600px) {
-
-    h1 {
-        font-size: 28px;
-    }
-}
-
-@media (max-width: 500px) {
-
-    h1 {
-        font-size: 26px;
-    }
-}
-
-@media (max-width: 400px) {
-
-    h1 {
-        font-size: 24px;
-    }
-}
-
-@media (max-width: 300px) {
-
-    h1 {
-        font-size: 22px;
-    }
-}
-
-@media (max-width: 250px) {
-
-    h1 {
-        font-size: 20px;
-    }
 }
