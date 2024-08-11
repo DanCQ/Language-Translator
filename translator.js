@@ -1,4 +1,5 @@
 const title = document.querySelector('h1');
+const nav = document.querySelector('nav');
 const microphone = document.querySelector('.oval');
 
 let allow = true; //used for interval
@@ -8,9 +9,8 @@ let power = false; //toggle on/off
 let timer; //used for interval
 
 
-
 function titleFade() {
-
+    
     let opacity = 0.0;
 
     setTimeout( () => {
@@ -45,12 +45,15 @@ function titleFade() {
             clearInterval(fade);
 
             title.style.display = "none";
+            nav.style.display = "block";
         }   
     }
 }
 
 
 function listening() { 
+
+    const micClick = new Audio('assets/mic-click.mp3');
 
     //toggles on/off
     if(!power) {
@@ -64,11 +67,14 @@ function listening() {
     function on() {
         clearInterval(countdown);
         allow = true;
+        micClick.play(); 
         microphone.style.backgroundColor = "aquamarine"; //on color
     }
 
     function off() { 
-        timer = 5000; //resets timer
+        timer = 5000; //resets, used for interval
+
+        micClick.play();
         microphone.style.backgroundColor = "tomato"; //off color
 
         if(allow) {
