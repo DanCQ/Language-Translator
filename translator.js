@@ -96,7 +96,13 @@ function listening() {
 
 
 window.addEventListener("click",  listening);
-window.addEventListener("touchstart", listening);
+
+window.addEventListener("touchstart", function(event) {
+
+    event.preventDefault(); //prevents touch zoom, drag, long press
+
+    listening();
+});
 
 
 window.onload = function() {
