@@ -23,15 +23,15 @@ body {
 h1 {
     background-color: black;
     border-radius: 5px;
-    color: aliceblue;
+    color: black;
     font-family: 'Audiowide', "jura";
-    font-size: clamp(28px, 3.5vw, 34px);
+    font-size: clamp(26px, 3vw, 30px);
     padding:1.5px 8px 3px 8px;
     position: absolute;
         top:2%;
     opacity: 0;
     text-align: center;
-    text-shadow: 0px 0px 1.5px mintcream;
+    text-shadow: 0px 0px 4px chartreuse;
     user-select: none;
     -webkit-user-select: none;
     z-index: 2;
