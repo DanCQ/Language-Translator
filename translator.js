@@ -8,6 +8,10 @@ let fade; //used for interval
 let power = false; //toggle on/off
 let timer; //used for interval
 
+// for testing
+// const colorArray = [
+// ];
+
 
 function titleFade() {
     
@@ -17,7 +21,7 @@ function titleFade() {
 
         fade = setInterval(fadeIn, 175); //fades in title
 
-    }, 1750); //waits 1.75 seconds
+    }, 1500); //waits 1.5 seconds
 
 
     function fadeIn() {
@@ -46,6 +50,9 @@ function titleFade() {
 
             title.style.display = "none";
             nav.style.display = "block";
+            if(!power) {
+                microphone.style.border = "solid 3px goldenrod";
+            }
         }   
     }
 }
@@ -54,6 +61,7 @@ function titleFade() {
 function listening() { 
 
     const micClick = new Audio('assets/mic-click.mp3');
+    //let index = 0; for testing
 
     //toggles on/off
     if(!power) {
@@ -68,7 +76,8 @@ function listening() {
         clearInterval(countdown);
         allow = true;
         micClick.play(); 
-        microphone.style.backgroundColor = "aquamarine"; //on color
+        microphone.style.backgroundColor = 'aquamarine'; //on color
+        microphone.style.border = "solid 3px silver";
     }
 
     function off() { 
@@ -76,6 +85,17 @@ function listening() {
 
         micClick.play();
         microphone.style.backgroundColor = "tomato"; //off color
+        microphone.style.border = "solid 3px silver";
+
+        // --for color testing--
+        // countdown = setInterval( () => {
+        //     microphone.style.backgroundColor = greenArray[index];
+        //     title.textContent = greenArray[index];
+        //     index++
+        //     if(index > greenArray.length) {
+        //         index = 0;
+        //     }
+        // },1500);
 
         if(allow) {
 
@@ -88,6 +108,7 @@ function listening() {
                     clearInterval(countdown);
                     allow = true;
                     microphone.style.backgroundColor = "antiquewhite"; //idle color
+                    microphone.style.border = "solid 3px goldenrod";
                 }
             }, 1000);
         }   
@@ -95,9 +116,9 @@ function listening() {
 }
 
 
-window.addEventListener("click",  listening);
+microphone.addEventListener("click",  listening);
 
-window.addEventListener("touchstart", function(event) {
+microphone.addEventListener("touchstart", function(event) {
 
     event.preventDefault(); //prevents touch zoom, drag, long press
 
