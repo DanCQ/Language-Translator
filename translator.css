@@ -24,7 +24,7 @@ h1 {
     background-color: black;
     border-radius: 5px;
     color: mintcream;
-    font-family: "jura";
+    font-family: 'Audiowide', "jura";
     font-size: clamp(32px, 3.5vw, 36px);
     padding:1.5px 8px 3px 8px;
     position: absolute;
