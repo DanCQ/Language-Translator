@@ -25,13 +25,13 @@ h1 {
     border-radius: 5px;
     color: mintcream;
     font-family: 'Audiowide', "jura";
-    font-size: clamp(32px, 3.5vw, 36px);
+    font-size: clamp(28px, 3.5vw, 34px);
     padding:1.5px 8px 3px 8px;
     position: absolute;
         top:2%;
     opacity: 0;
     text-align: center;
-    text-shadow: 0px 0px 1.5px mintcream;
+    text-shadow: 0px 0px 1.5px cyan;
     user-select: none;
     -webkit-user-select: none;
     z-index: 2;
