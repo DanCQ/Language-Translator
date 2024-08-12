@@ -23,7 +23,7 @@ body {
 h1 {
     background-color: black;
     border-radius: 5px;
-    color: aliceblue;
+    color: mintcream;
     font-family: "jura";
     font-size: clamp(32px, 3.5vw, 36px);
     padding:1.5px 8px 3px 8px;
