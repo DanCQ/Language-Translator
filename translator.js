@@ -93,7 +93,7 @@ function listening() {
                     clearInterval(countdown);
                     allow = true;
                     microphone.style.backgroundColor = "antiquewhite"; //idle color
-                    microphone.style.border = "solid 3px goldenrod";
+                    microphone.style.borderColor = "goldenrod";
                 }
             }, 1000);
         }   
@@ -116,4 +116,3 @@ window.onload = function() {
     titleFade();
 
 };
-
