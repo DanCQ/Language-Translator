@@ -8,10 +8,6 @@ let fade; //used for interval
 let power = false; //toggle on/off
 let timer; //used for interval
 
-// for testing
-// const colorArray = [
-// ];
-
 
 function titleFade() {
     
@@ -61,7 +57,6 @@ function titleFade() {
 function listening() { 
 
     const micClick = new Audio('assets/mic-click.mp3');
-    //let index = 0; for testing
 
     //toggles on/off
     if(!power) {
@@ -77,7 +72,7 @@ function listening() {
         allow = true;
         micClick.play(); 
         microphone.style.backgroundColor = 'aquamarine'; //on color
-        microphone.style.border = "solid 3px silver";
+        microphone.style.border = "solid 3px cornflowerblue";
     }
 
     function off() { 
@@ -86,16 +81,6 @@ function listening() {
         micClick.play();
         microphone.style.backgroundColor = "tomato"; //off color
         microphone.style.border = "solid 3px silver";
-
-        // --for color testing--
-        // countdown = setInterval( () => {
-        //     microphone.style.backgroundColor = greenArray[index];
-        //     title.textContent = greenArray[index];
-        //     index++
-        //     if(index > greenArray.length) {
-        //         index = 0;
-        //     }
-        // },1500);
 
         if(allow) {
 
