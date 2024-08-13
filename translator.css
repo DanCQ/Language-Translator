@@ -48,6 +48,7 @@ img {
 
 .oval {
     background-color: antiquewhite;
+    border: solid 3px lightgoldenrodyellow;
     border-radius: 50%;
     cursor: pointer;
     display:flex;
