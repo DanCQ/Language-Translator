@@ -47,7 +47,7 @@ function titleFade() {
             title.style.display = "none";
             nav.style.display = "block";
             if(!power) {
-                microphone.style.border = "solid 3px goldenrod";
+                microphone.style.borderColor = "goldenrod";
             }
         }   
     }
@@ -72,7 +72,7 @@ function listening() {
         allow = true;
         micClick.play(); 
         microphone.style.backgroundColor = 'aquamarine'; //on color
-        microphone.style.border = "solid 3px cornflowerblue";
+        microphone.style.borderColor = "cornflowerblue";
     }
 
     function off() { 
@@ -80,7 +80,7 @@ function listening() {
 
         micClick.play();
         microphone.style.backgroundColor = "tomato"; //off color
-        microphone.style.border = "solid 3px silver";
+        microphone.style.borderColor = "silver";
 
         if(allow) {
 
@@ -116,3 +116,4 @@ window.onload = function() {
     titleFade();
 
 };
+
