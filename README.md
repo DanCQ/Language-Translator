@@ -1,4 +1,4 @@
-# Universal Language Translator
+# Language Translator
 
 <a href="https://universal-language-translator.pages.dev/">Universal Language Translator</a>
 
