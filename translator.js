@@ -101,14 +101,96 @@ function listening() {
 }
 
 
-microphone.addEventListener("click",  listening);
+//start microphone listening functions
+const transcript = document.getElementById('transcript');
 
-microphone.addEventListener("touchstart", function(event) {
+let recognition;
+if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+} else if ('SpeechRecognition' in window) {
+    recognition = new SpeechRecognition();
+} else {
+    alert('Speech Recognition API is not supported in this browser.');
+}
 
-    event.preventDefault(); //prevents touch zoom, drag, long press
+if (recognition) {
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
 
-    listening();
-});
+    recognition.onresult = function(event) {
+        const speechResult = event.results[0][0].transcript;
+        transcript.textContent = `You said: ${speechResult}`;
+        processSpeech(speechResult);
+    };
+
+    recognition.onerror = function(event) {
+        console.error('Speech recognition error detected: ' + event.error);
+        switch(event.error) {
+            case 'no-speech':
+                alert('No speech detected. Please try again.');
+                break;
+            case 'audio-capture':
+                alert('Microphone not detected. Please ensure your microphone is connected and try again.');
+                break;
+            case 'not-allowed':
+                alert('Microphone access not allowed. Please enable microphone permissions.');
+                break;
+            case 'network':
+                alert('Network error. Please check your internet connection.');
+                break;
+            default:
+                alert('Speech recognition error: ' + event.error);
+        }
+    };
+
+    microphone.addEventListener("click", () => {
+        
+        listening();
+
+        if(power) {
+            recognition.start();
+        }
+    });
+    
+    microphone.addEventListener("touchstart", (event) => {
+    
+        event.preventDefault(); //prevents touch zoom, drag, long press
+    
+        listening();
+
+        if(power) {
+            recognition.start();
+        }
+    });
+}
+
+
+function processSpeech(speechText) {
+    fetch('https://chatgpt-worker.danycervantesq.workers.dev/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            prompt: speechText,
+            max_tokens: 100,
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const responseText = data.choices[0].text.trim();
+        transcript.textContent = `ChatGPT said: ${responseText}`;
+        speakText(responseText);
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
+function speakText(text) {
+    const speechSynthesisUtterance = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(speechSynthesisUtterance);
+}
 
 
 window.onload = function() {
@@ -116,3 +198,62 @@ window.onload = function() {
     titleFade();
 
 };
+
+
+
+
+// //Cloudflare API JS script
+// addEventListener('fetch', event => {
+//     event.respondWith(handleRequest(event.request))
+// })
+    
+// async function handleRequest(request) {
+//     // Get the API key from the environment variable
+//     const apiKey = CHATGPT_API_KEY;
+
+//     // Your ChatGPT API endpoint
+//     const apiUrl = 'https://api.openai.com/v1/chat/completions';
+
+//     try {
+//         // Check if the request has a body
+//         if (request.method === 'POST' || request.method === 'PUT') {
+//             const contentLength = request.headers.get('content-length');
+            
+//             if (!contentLength || parseInt(contentLength) === 0) {
+//             return new Response('No content in request body', { status: 400 });
+//             }
+//         }
+
+//         // Extract data from the request (e.g., from a POST request)
+//         let requestData;
+//         try {
+//           requestData = await request.json();
+//         } catch (error) {
+//           return new Response('Invalid JSON input', { status: 400 });
+//         }      
+
+//         // Prepare the API request to OpenAI
+//         const apiResponse = await fetch(apiUrl, {
+//             method: 'POST',
+//             headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${apiKey}`,
+//             },
+//             body: JSON.stringify(requestData)
+//         });
+
+//         // Return the response from the API
+//         const apiResult = await apiResponse.json();
+        
+//         return new Response(JSON.stringify(apiResult), {
+//             headers: { 
+//                 'Content-Type': 'application/json',
+//                 'Access-Control-Allow-Origin': '*', // Allows all origins
+//                 'Access-Control-Allow-Methods': 'POST, OPTIONS', // Specifies allowed methods
+//                 'Access-Control-Allow-Headers': 'Content-Type, Authorization' // Specifies allowed headers
+//             }
+//         });
+//     } catch (error) {
+//       return new Response('Error processing request: ' + error.message, { status: 500 });
+//     }
+// }
