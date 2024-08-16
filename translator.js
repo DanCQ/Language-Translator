@@ -201,11 +201,10 @@ window.onload = function() {
 
 
 
-
 // //Cloudflare API JS script
 // addEventListener('fetch', event => {
 //     event.respondWith(handleRequest(event.request))
-// })
+// });
     
 // async function handleRequest(request) {
 //     // Get the API key from the environment variable
@@ -215,29 +214,34 @@ window.onload = function() {
 //     const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
 //     try {
+//         // Handle preflight OPTIONS request for CORS
+//         if (request.method === 'OPTIONS') {
+//             return handleOptions(request);
+//         }
+
 //         // Check if the request has a body
 //         if (request.method === 'POST' || request.method === 'PUT') {
 //             const contentLength = request.headers.get('content-length');
             
 //             if (!contentLength || parseInt(contentLength) === 0) {
-//             return new Response('No content in request body', { status: 400 });
+//                 return new Response('No content in request body', { status: 400 });
 //             }
 //         }
 
 //         // Extract data from the request (e.g., from a POST request)
 //         let requestData;
 //         try {
-//           requestData = await request.json();
+//             requestData = await request.json();
 //         } catch (error) {
-//           return new Response('Invalid JSON input', { status: 400 });
+//             return new Response('Invalid JSON input', { status: 400 });
 //         }      
 
 //         // Prepare the API request to OpenAI
 //         const apiResponse = await fetch(apiUrl, {
 //             method: 'POST',
 //             headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': `Bearer ${apiKey}`,
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${apiKey}`,
 //             },
 //             body: JSON.stringify(requestData)
 //         });
@@ -248,12 +252,36 @@ window.onload = function() {
 //         return new Response(JSON.stringify(apiResult), {
 //             headers: { 
 //                 'Content-Type': 'application/json',
-//                 'Access-Control-Allow-Origin': '*', // Allows all origins
+//                 'Access-Control-Allow-Origin': getAllowedOrigin(request.headers.get('Origin')), // Set the allowed origin dynamically
 //                 'Access-Control-Allow-Methods': 'POST, OPTIONS', // Specifies allowed methods
 //                 'Access-Control-Allow-Headers': 'Content-Type, Authorization' // Specifies allowed headers
 //             }
 //         });
 //     } catch (error) {
-//       return new Response('Error processing request: ' + error.message, { status: 500 });
+//         return new Response('Error processing request: ' + error.message, { status: 500 });
 //     }
 // }
+
+// function handleOptions(request) {
+//     const headers = {
+//         'Access-Control-Allow-Origin': getAllowedOrigin(request.headers.get('Origin')), // Set the allowed origin dynamically
+//         'Access-Control-Allow-Methods': 'POST, OPTIONS', // Specifies allowed methods
+//         'Access-Control-Allow-Headers': 'Content-Type, Authorization', // Specifies allowed headers
+//         'Access-Control-Max-Age': '86400', // Cache the preflight response for 24 hours
+//     };
+//     return new Response(null, { headers });
+// }
+
+// function getAllowedOrigin(origin) {
+//     const allowedOrigins = [
+//         'https://universal-language-translator.pages.dev',
+//         'https://dancq.github.io/Language-Translator'
+//     ];
+    
+//     if (allowedOrigins.includes(origin)) {
+//         return origin;
+//     } else {
+//         return 'null'; // Return 'null' if the origin is not allowed
+//     }
+// }
+  
