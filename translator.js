@@ -120,6 +120,8 @@ if (recognition) {
 
     recognition.onresult = function(event) {
         const speechResult = event.results[0][0].transcript;
+            console.log(event.results[0].transcript);
+            console.log(event.results[0][0].transcript);
         transcript.textContent = `You said: ${speechResult}`;
         processSpeech(speechResult);
     };
@@ -262,7 +264,7 @@ window.onload = function() {
 //     }
 // }
 
-// function handleOptions(request) {
+// function handleOptions(request) { 
 //     const headers = {
 //         'Access-Control-Allow-Origin': getAllowedOrigin(request.headers.get('Origin')), // Set the allowed origin dynamically
 //         'Access-Control-Allow-Methods': 'POST, OPTIONS', // Specifies allowed methods
