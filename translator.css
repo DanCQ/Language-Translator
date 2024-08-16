@@ -58,6 +58,12 @@ img {
     position: absolute;
 }
 
+#output {
+    color: white;
+    position:absolute;
+        bottom:0;
+}
+
 nav {
     color:silver;
     cursor: pointer;
@@ -70,3 +76,4 @@ nav {
     user-select: none;
     -webkit-user-select: none;
 }
+
