@@ -235,7 +235,7 @@ window.onload = function() {
 
 
 
-// //Cloudflare API JS script
+// //Cloudflare Worker JS script for CHATGPT_API_KEY
 // addEventListener('fetch', event => {
 //     event.respondWith(handleRequest(event.request));
 // });
