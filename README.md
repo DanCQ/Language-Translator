@@ -1,6 +1,6 @@
 # Language Translator
 
-<a href="https://universal-language-translator.pages.dev/">Universal Language Translator</a>
+<a href="https://universal-language-translator.pages.dev/" target="_blank">Universal Language Translator</a>
 
 --UNdeR CoNSTructiON-- <br>
 Will attempt to make an encrypted HIPAA compliant Universal Language Translator. <br>
