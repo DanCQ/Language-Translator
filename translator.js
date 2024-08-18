@@ -178,13 +178,26 @@ function processSpeech(speechText) {
             max_tokens: 100,
         })
     })
-    .then(response => response.json())
-    .then(data => {
-        const responseText = data.choices[0].text.trim();
-        transcript.textContent = `ChatGPT said: ${responseText}`;
-        speakText(responseText);
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
     })
-    .catch(error => console.error('Error:', error));
+    .then(data => {
+        // Check if the data structure is as expected
+        if (data && data.choices && data.choices.length > 0) {
+            const responseText = data.choices[0].text.trim();
+            transcriptElement.textContent = `ChatGPT said: ${responseText}`;
+            speakText(responseText);
+        } else {
+            throw new Error('Unexpected response structure');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+        transcriptElement.textContent = `Error: ${error.message}`;
+    });
 }
 
 
