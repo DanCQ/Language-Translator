@@ -188,7 +188,7 @@ function processSpeech(speechText) {
         // Check if the data structure is as expected
         if (data && data.choices && data.choices.length > 0) {
             const responseText = data.choices[0].text.trim();
-            transcriptElement.textContent = `ChatGPT said: ${responseText}`;
+            transcript.textContent = `ChatGPT said: ${responseText}`;
             speakText(responseText);
         } else {
             throw new Error('Unexpected response structure');
@@ -196,7 +196,7 @@ function processSpeech(speechText) {
     })
     .catch(error => {
         console.error('Error:', error.message);
-        transcriptElement.textContent = `Error: ${error.message}`;
+        transcript.textContent = `Error: ${error.message}`;
     });
 }
 
