@@ -174,7 +174,7 @@ function processSpeech(speechText) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            model: 'gpt-4-turbo', // Add the model parameter
+            model: 'gpt-3.5-turbo', // Add the model parameter
             prompt: speechText,
             max_tokens: 100,
         })
