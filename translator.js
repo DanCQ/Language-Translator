@@ -30,7 +30,7 @@ const supportedLanguages = [
     'Yidgha', 'Yoruba', 'Zulu'
 ];
 
-const alphebeticalLanguages = supportedLanguages.sort(); //.sort().split("', '"); formating hint
+//const alphebeticalLanguages = supportedLanguages.sort(); //.sort().split("', '"); formating hint
 
 
 function titleFade() {
