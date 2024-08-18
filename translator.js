@@ -120,8 +120,7 @@ if (recognition) {
 
     recognition.onresult = function(event) {
         const speechResult = event.results[0][0].transcript;
-            console.log(event.results[0].transcript);
-            console.log(event.results[0][0].transcript);
+            console.log(speechResult);
         transcript.textContent = `You said: ${speechResult}`;
         processSpeech(speechResult);
     };
