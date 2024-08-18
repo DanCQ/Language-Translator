@@ -174,6 +174,7 @@ function processSpeech(speechText) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+            model: 'gpt-4-turbo', // Add the model parameter
             prompt: speechText,
             max_tokens: 100,
         })
@@ -217,9 +218,9 @@ window.onload = function() {
 
 // //Cloudflare API JS script
 // addEventListener('fetch', event => {
-//     event.respondWith(handleRequest(event.request))
+//     event.respondWith(handleRequest(event.request));
 // });
-    
+
 // async function handleRequest(request) {
 //     // Get the API key from the environment variable
 //     const apiKey = CHATGPT_API_KEY;
@@ -249,6 +250,9 @@ window.onload = function() {
 //         } catch (error) {
 //             return new Response('Invalid JSON input', { status: 400 });
 //         }      
+
+//         // Add the model parameter to the request data
+//         requestData.model = 'gpt-4-turbo'; // Specify the model to use
 
 //         // Prepare the API request to OpenAI
 //         const apiResponse = await fetch(apiUrl, {
@@ -298,4 +302,3 @@ window.onload = function() {
 //         return 'null'; // Return 'null' if the origin is not allowed
 //     }
 // }
-  
