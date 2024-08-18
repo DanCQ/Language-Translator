@@ -184,7 +184,7 @@ function processSpeech(speechText) {
         }
         return response.json();
     })
-    .then(data => {
+    .then(data => { console.log(data);
         // Check if the data structure is as expected
         if (data && data.choices && data.choices.length > 0) {
             const responseText = data.choices[0].text.trim();
