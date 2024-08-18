@@ -1,12 +1,36 @@
-const title = document.querySelector('h1');
 const nav = document.querySelector('nav');
 const microphone = document.querySelector('.oval');
+const title = document.querySelector('h1');
+const transcript = document.getElementById('transcript');
 
 let allow = true; //used for interval
 let countdown; //used for interval
 let fade; //used for interval
 let power = false; //toggle on/off
+let recognition; //used for detected speech
 let timer; //used for interval
+
+const supportedLanguages = [ 
+    'Abaza', 'Abkhaz', 'Acehnese', 'Adyghe', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Avar', 'Azerbaijani', 
+    'Bakhtiari', 'Balinese', 'Balochi', 'Balti', 'Baluchi', 'Bashkir', 'Basque', 'Bengali', 'Bosnian', 'Brahui', 
+    'Brokskat', 'Bulgarian', 'Burmese', 'Burushaski', 'Buryat', 'Catalan', 'Chechen', 'Cherkess', 
+    'Chinese (Simplified)', 'Chinese (Traditional)', 'Chuvash', 'Circassian', 'Croatian', 'Czech', 'Danish', 
+    'Dargwa', 'Dari', 'Dutch', 'English', 'Estonian', 'Farsi', 'Filipino', 'Finnish', 'French', 'Galician', 
+    'Gawar-Bati', 'Georgian', 'German', 'Gilaki', 'Gowro', 'Greek', 'Gujarati', 'Gujari', 'Haitian Creole', 
+    'Hausa', 'Hazaragi', 'Hebrew', 'Hindi', 'Hindko', 'Hungarian', 'Icelandic', 'Igbo', 'Indonesian', 'Ingush', 
+    'Irish', 'Italian', 'Japanese', 'Javanese', 'Kabardian', 'Kalami', 'Kalasha', 'Kalmyk', 'Kannada', 
+    'Karachay-Balkar', 'Kashmiri', 'Kazakh', 'Khmer', 'Khowar', 'Korean', 'Kumyk', 'Kurdish', 'Kyrgyz', 
+    'Ladakhi', 'Lao', 'Latvian', 'Laz', 'Lezgian', 'Lithuanian', 'Luri', 'Luxembourgish', 'Macedonian', 
+    'Madurese', 'Malay', 'Malayalam', 'Maltese', 'Marathi', 'Mazanderani', 'Mingrelian', 'Mongolian', 'Nogai', 
+    'Norwegian', 'Nuristani', 'Ossetic', 'Pashayi', 'Pashto', 'Persian', 'Polish', 'Portuguese', 'Punjabi', 
+    'Purgi', 'Purki', 'Pushto', 'Romanian', 'Russian', 'Saraiki', 'Serbian', 'Shina', 'Shughni', 'Sindhi', 
+    'Sinhala', 'Slovak', 'Slovenian', 'Somali', 'Sorani', 'Spanish', 'Sundanese', 'Svan', 'Swahili', 'Swedish', 
+    'Tabasaran', 'Tajik', 'Talysh', 'Tamil', 'Tat', 'Tatar', 'Telugu', 'Thai', 'Torwali', 'Turkish', 'Turkmen', 
+    'Tuvan', 'Uighur', 'Ukrainian', 'Urdu', 'Uzbek', 'Vietnamese', 'Wakhi', 'Welsh', 'Xhosa', 'Yakut', 'Yazgulyam',
+    'Yidgha', 'Yoruba', 'Zulu'
+];
+
+const alphebeticalLanguages = supportedLanguages.sort(); //.sort().split("', '"); formating hint
 
 
 function titleFade() {
@@ -102,9 +126,6 @@ function listening() {
 
 
 //start microphone listening functions
-const transcript = document.getElementById('transcript');
-
-let recognition;
 if ('webkitSpeechRecognition' in window) {
     recognition = new webkitSpeechRecognition();
 } else if ('SpeechRecognition' in window) {
