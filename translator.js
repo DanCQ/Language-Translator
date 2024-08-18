@@ -10,7 +10,7 @@ let power = false; //toggle on/off
 let recognition; //used for detected speech
 let timer; //used for interval
 
-const supportedLanguages = [ 
+const supportedLanguages = [  //.sort().split("', '"); alphabetizing hint
     'Abaza', 'Abkhaz', 'Acehnese', 'Adyghe', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Avar', 'Azerbaijani', 
     'Bakhtiari', 'Balinese', 'Balochi', 'Balti', 'Baluchi', 'Bashkir', 'Basque', 'Bengali', 'Bosnian', 'Brahui', 
     'Brokskat', 'Bulgarian', 'Burmese', 'Burushaski', 'Buryat', 'Catalan', 'Chechen', 'Cherkess', 
@@ -29,8 +29,6 @@ const supportedLanguages = [
     'Tuvan', 'Uighur', 'Ukrainian', 'Urdu', 'Uzbek', 'Vietnamese', 'Wakhi', 'Welsh', 'Xhosa', 'Yakut', 'Yazgulyam',
     'Yidgha', 'Yoruba', 'Zulu'
 ];
-
-//const alphebeticalLanguages = supportedLanguages.sort(); //.sort().split("', '"); formating hint
 
 
 function titleFade() {
